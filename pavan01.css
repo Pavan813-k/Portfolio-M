@@ -297,14 +297,17 @@ span{
 .timeline-icon{
     font-size: 50px;
 }
-#skills {
+
+
+.skills {
   padding-top: 9%;
   padding-bottom: 50px;
   background-color: black;
+  margin-bottom: 0px; 
 
 }
 
-#skills h2 {
+.skills h2 {
   text-align: center;
   font-size: 2.5em;
   margin-bottom: 30px;
@@ -312,9 +315,12 @@ span{
 }
 
 .skills-container {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* fixed 2 columns */
+  gap: 40px;
 }
 
 .skill {
@@ -328,53 +334,75 @@ span{
 
 .skill-bar {
   background: #ddd;
-  border-radius: 5px;
+  border-radius: 10px;
   overflow: hidden;
-  
+  height: 30px;
 }
 
 .skill-level {
-  padding: 10px;
+  padding: 0 15px; /* reduce vertical padding */
+  height: 100%;
   color: #fff;
   font-weight: bold;
-  text-align: right;
-  border-radius: 5px;
+  font-size: 1.1em;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-radius: 0px;
+  background: linear-gradient(90deg, white, orangered)
 }
 .skill-level.html {
-  width: 90%;
-  background-color: #e44d26;
+  --skill-width: 90%;
+  width: 0;
 }
-
 .skill-level.css {
-  width: 85%;
-  background-color: #264de4;
+  --skill-width: 80%;
+  width: 0;
 }
-
 .skill-level.js {
-  width: 75%;
-  background-color: #f0db4f;
-  
+  --skill-width: 60%;
+  width: 0; 
 }
 .skill-level.wordpress {
-  width: 70%;
-  background-color: #21759b;
+  --skill-width: 70%;
+  width: 0;
 }
 .skill-level.bootstrap {
-  width: 80%;
-  background-color: #563d7c;
+  --skill-width: 60%;
+  width: 0;
 }
 .skill-level.illustrator {
-  width: 80%;
-  background-color: #e7cd0d;
+  --skill-width: 80%;
+  width: 0;
 }
 .skill-level.photoshop  {
-  width: 60%;
-  background-color: #306998;
+ --skill-width: 60%;
+  width: 0;
 }
 .skill-level.Figma {
-  width: 80%;
-  background-color: rgb(255,44,44)
+ --skill-width: 80%;
+  width: 0;
 }
+/* Animation keyframe */
+@keyframes fillBar {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--skill-width);
+  }
+}
+
+/* Add animation class */
+.skill-level.animate {
+  animation: fillBar 1.5s ease forwards;
+}
+@media (max-width: 768px) {
+  .skills-container {
+    grid-template-columns: 1fr;
+  }
+}
+
 
 
 .projects {
@@ -393,20 +421,33 @@ span{
   flex-wrap: wrap;
   justify-content: center;
   gap: 25px;
+  position: relative;
 }
 
 .project-card {
     background-color: black;
     border-radius: 8px;
-    box-shadow: 0 0 10px yellow, 0 0 15px red;
     width: 250px;
+    height: fit-content;
     padding: 20px;
+    opacity: 0;
+   transform: translateY(50px);
+   transition: all 0.6s ease;
+   pointer-events: none;
+   display: none;
+}
+.project-card.show {
+   display: block; /* Back in layout */
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  animation: fadeleft 0.5s ease-in-out forwards;
 }
 .project-card:hover {
-    border: 4px solid orangered;
-    border-block-end: #e44d26;
-    transform: scale(1.05)translateY(-5px);
+    box-shadow: 10px 0px 25px orangered;
+    transform: scale(1.05)translateZ(-10px);
 }
+
 .project-card img {
          width: 80%;
     border-radius: 10px;
@@ -465,8 +506,71 @@ span{
     font-style: bold;
     
   }
-  
-  .buttons button:hover {
-    background: white;
-    transform: scale(1.0)translateY(-5px);
+.buttons button.active {
+  background-color: black;
+  color: white;
+}
+@keyframes fadeLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
   }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* we don't no */
+@media (max-width: 992px) {
+  .projects-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .skill {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-container {
+    grid-template-columns: 1fr;
+  }
+
+  .buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .project-card {
+    margin: 0 auto;
+    width: 90%;
+  }
+
+  .skills-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  h2 {
+    font-size: 2em;
+  }
+}
+
+@media (max-width: 480px) {
+  .buttons button {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .skill h3 {
+    font-size: 16px;
+  }
+
+  .skill-level {
+    font-size: 12px;
+    padding: 8px;
+  }
+}
