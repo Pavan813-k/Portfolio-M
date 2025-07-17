@@ -74,7 +74,7 @@ span{
 }
 .home-content{
     max-width: 100%;
-    animation: fadeIn 1s ease-out forwards;
+    animation: fadeIn 2s ease-out forwards;
 }
 .home-content h3{
     font-size: 42px;
@@ -120,7 +120,7 @@ span{
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px); /* optional: fade + slide */
+    transform: translateY(30px); /* optional: fade + slide */
   }
   to {
     opacity: 1;
