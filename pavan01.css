@@ -76,16 +76,17 @@ span{
     max-width: 100%;
     animation: fadeIn 2s ease-out forwards;
 }
-.home-content h3{
+.home-content h3 {
     font-size: 42px;
-    animation: backwards;
+    animation: fadeIn 1s ease-out forwards;
 }
 .home-content h1{
     font-size: 62px;
     line-height: 1.2;
 }
-.home-content h1:hover{
-  transform-origin: 20px;
+.home-content h1:hover {
+  transform: scale(1.05);
+  transform-origin: left;
 }
 .home-content p{
     font-size: 18px;
@@ -112,6 +113,29 @@ span{
     background-color: white;
     color: black;
     border: 2px solid black;
+}
+
+@media (max-width: 768px) {
+  .home-content h1 {
+    font-size: 38px;
+  }
+
+  .home-content h3 {
+    font-size: 24px;
+  }
+
+  .button-box {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  .button-1 {
+    width: 80%;
+  }
+}
+html {
+  scroll-behavior: smooth;
 }
 
 
