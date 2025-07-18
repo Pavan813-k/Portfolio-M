@@ -170,6 +170,7 @@ html {
     background-color: rgba(0, 0, 0, 0.6);
     width: 8px;
 }
+@media (max-width: 768px){
 .about{
     display: flex;
     justify-content: center;
@@ -212,7 +213,7 @@ html {
 .button-2:hover{
     background-color: white;
     color: orangered;
-}
+}}
 .contact-form h2{
     text-align: center;
     margin-top: 3em;
