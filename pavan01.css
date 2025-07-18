@@ -375,7 +375,7 @@ html {
 
 .skill-bar {
   background: #eee;
-  border-radius: 10px;
+  border-radius: 8px;
   overflow: hidden;
   height: 30px;
 }
